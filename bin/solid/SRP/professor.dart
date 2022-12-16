@@ -16,6 +16,12 @@ class Alunos {
   late String turmaAluno;
 
   Alunos(this.idadeAluno, this.nameAluno, this.materiasDoAluno, this.turmaAluno);
+  Alunos.construtorSemParametros();
+
+  @override
+  String toString() {
+    return this.nameAluno + "\n" + this.turmaAluno + "\n" + this.idadeAluno.toString() + "\n" + this.materiasDoAluno.toString();
+  }
 }
 
 abstract class IAlunoRepository {
@@ -23,14 +29,19 @@ abstract class IAlunoRepository {
 }
 
 abstract class IProfessorRepository {
-  Future<Bool> cadastrarProfessor(Professor professor);
+  Future<bool> cadastrarProfessor(Professor professor);
 }
 
-
-class ProfessorRepositoryImpl implements IProfessorRepository{
+class ProfessorRepositoryImpl implements IProfessorRepository {
   @override
-  Future<Bool> cadastrarProfessor(Professor professor) async {
-    await professor.idadeProfessor = 10
-    return true;
+  Future<bool> cadastrarProfessor(Professor professor) async {
+    List<String> materiasProfessor = ["Ingles", "Portugues", "Espanhol"];
+
+    professor.idadeProfessor = 12;
+
+    professor.materiasProfessor = materiasProfessor;
+
+    professor.idadeProfessor = 12;
+    return Future.value(true);
   }
 }
